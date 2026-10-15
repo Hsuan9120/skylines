@@ -34,8 +34,10 @@ $$('.official').forEach(figure=>{
  function missing(){button.disabled=true;img.hidden=true;let fallback=$('.art-error',figure);if(!fallback){fallback=document.createElement('div');fallback.className='art-error';fallback.textContent='圖片暫時無法載入，請稍後重試。';button.append(fallback);}}
  img.addEventListener('load',available);img.addEventListener('error',missing);
  if(img.complete){if(img.naturalWidth)available();else missing();}
- button.addEventListener('click',()=>{const full=$('#lightbox-image');full.src=img.currentSrc||img.src;full.alt=img.alt;$('#lightbox-caption').textContent=`正式美術 · ${img.alt}｜${$('figcaption>span:last-child',figure).textContent}`;openModal($('#lightbox'),button);});
+ button.addEventListener('click',()=>{const full=$('#lightbox-image');full.src=img.dataset.original||img.src;full.alt=img.alt;$('#lightbox-caption').textContent=`正式美術 · ${img.alt}｜${$('figcaption>span:last-child',figure).textContent}`;openModal($('#lightbox'),button);});
 });
+// Start image downloads before their exhibit reaches the viewport.
+if('IntersectionObserver' in window){const nearby=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.loading='eager';nearby.unobserve(e.target);}}),{rootMargin:'1600px 0px'});$$('img[loading=lazy]').forEach(img=>nearby.observe(img));}
 const concept=$('.concept img');
 concept.addEventListener('error',()=>{concept.hidden=true;const placeholder=document.createElement('div');placeholder.className='art-error';placeholder.style.border='1px solid #B68B3B';placeholder.style.background='#ECE3CD';placeholder.textContent='概念插畫待置入｜非官方概念示意';concept.before(placeholder);});
 if('IntersectionObserver' in window){
@@ -43,9 +45,9 @@ if('IntersectionObserver' in window){
  if(!matchMedia('(prefers-reduced-motion: reduce)').matches){const reveal=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('is-revealed');reveal.unobserve(e.target);}}),{threshold:.12});$$('.chapter-title,.chronicle,.br-block,.personnel').forEach(el=>{el.classList.add('soft-reveal');reveal.observe(el);});}
 }
 // Start the authorized track from zero on each page load; respect browser autoplay policy.
-const audio=new Audio();audio.preload='auto';audio.volume=.25;
+const audio=new Audio();audio.preload='auto';audio.volume=.25;audio.loop=true;
 const play=$('#music-play'),volumeToggle=$('#volume-toggle'),status=$('#music-status'),slider=$('#volume'),mute=$('#mute');
-function syncAudio(){play.textContent=audio.paused?'播放':'暫停';play.setAttribute('aria-label',`${audio.paused?'播放':'暫停'}背景音樂，音樂創作者轉轉`);mute.textContent=audio.muted?'取消靜音':'靜音';mute.setAttribute('aria-pressed',String(audio.muted));}
+function syncAudio(){play.textContent=audio.paused?'播放':'暫停';play.setAttribute('aria-label',`${audio.paused?'播放':'暫停'}背景音樂`);mute.textContent=audio.muted?'取消靜音':'靜音';mute.setAttribute('aria-pressed',String(audio.muted));}
 function unavailable(){play.disabled=true;volumeToggle.disabled=true;status.textContent='音檔待提供／尚未能播放';$('#volume-panel').hidden=true;volumeToggle.setAttribute('aria-expanded','false');}
 audio.addEventListener('loadedmetadata',()=>{play.disabled=false;volumeToggle.disabled=false;status.textContent='正在啟動 BGM';syncAudio();});
 let autoplayBlocked=false;
@@ -56,7 +58,7 @@ document.addEventListener('click',unlockAudio);document.addEventListener('keydow
 audio.addEventListener('error',unavailable);
 audio.addEventListener('play',()=>{status.textContent='播放中';syncAudio();});
 audio.addEventListener('pause',()=>{status.textContent='已暫停';syncAudio();});
-audio.addEventListener('ended',()=>{status.textContent='播放完畢';syncAudio();});
+
 play.addEventListener('click',async()=>{autoplayBlocked=false;if(audio.paused){try{await audio.play();}catch{status.textContent='無法播放，請重試';syncAudio();}}else{audio.pause();syncAudio();}});
 volumeToggle.addEventListener('click',()=>{const open=volumeToggle.getAttribute('aria-expanded')!=='true';volumeToggle.setAttribute('aria-expanded',String(open));$('#volume-panel').hidden=!open;});
 slider.addEventListener('input',()=>{audio.volume=Number(slider.value)/100;$('#volume-value').value=`${slider.value}%`;});
