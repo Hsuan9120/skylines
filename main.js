@@ -1,5 +1,10 @@
 'use strict';
 document.documentElement.classList.add('js');
+// Every new visit starts at the cover; in-page navigation remains available.
+history.scrollRestoration='manual';
+history.replaceState(null,'',location.pathname+location.search);
+window.scrollTo({top:0,behavior:'instant'});
+window.addEventListener('pageshow',()=>requestAnimationFrame(()=>window.scrollTo({top:0,behavior:'instant'})));
 const $=(s,root=document)=>root.querySelector(s);
 const $$=(s,root=document)=>[...root.querySelectorAll(s)];
 const header=$('.site-header');
@@ -66,4 +71,4 @@ mute.addEventListener('click',()=>{audio.muted=!audio.muted;syncAudio();});
 document.addEventListener('click',e=>{if(!e.target.closest('.music')){$('#volume-panel').hidden=true;volumeToggle.setAttribute('aria-expanded','false');}});
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!$('#volume-panel').hidden){$('#volume-panel').hidden=true;volumeToggle.setAttribute('aria-expanded','false');volumeToggle.focus();}});
 audio.src='Skyline_.mp3';
-window.addEventListener('load',()=>{if(location.hash==='#participation')openModal($('#participation'),$('[data-drawer]'));else if(location.hash){const target=$(location.hash);target?.scrollIntoView({behavior:'instant'});}});
+

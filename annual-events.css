@@ -1,0 +1,39 @@
+/* Fifth exhibit only; existing artwork, copy and components remain untouched. */
+.annual-events{background:#203A50;background-image:radial-gradient(ellipse at 10% 20%,#ece3cd06,transparent 65%);color:#fff}
+.annual-events .chapter-title h2{word-break:normal;overflow-wrap:normal}
+.annual-cycle{color:#D4AD60;font-family:var(--serif);letter-spacing:.14em;margin:25px 0 48px;padding-left:30px}
+.annual-cycle span{padding:0 18px}
+.annual-timeline{list-style:none;margin:0 0 0 12px;padding:0 0 0 44px;border-left:2px solid #B68B3B}
+.annual-node{position:relative;padding:0 0 30px}
+.annual-node:last-child{padding-bottom:0}
+.annual-node:before{content:'';position:absolute;width:12px;height:12px;border:2px solid #D4AD60;background:#203A50;border-radius:50%;left:-53px;top:43px;box-shadow:0 0 0 6px #203A50}
+.annual-event{border:1px solid #B68B3B;background:linear-gradient(110deg,#ffffff04,transparent),#203A50}
+.annual-event summary{list-style:none;display:grid;grid-template-columns:120px minmax(0,1fr) 32px;gap:26px;align-items:center;padding:32px;cursor:pointer;min-height:120px;transition:background .18s}
+.annual-event summary::-webkit-details-marker{display:none}
+.annual-event summary:hover{background:#ece3cd0a}
+.annual-event summary:focus-visible{outline:3px solid #D4AD60;outline-offset:5px}
+.annual-date{color:#D4AD60;font-size:22px;font-family:var(--serif);line-height:1.5}
+.annual-date small{display:block;font:10px Georgia,serif;letter-spacing:.14em;margin-top:9px}
+.annual-heading{min-width:0;display:block}
+.annual-name{display:block;font:29px/1.4 var(--serif);color:white;word-break:normal;overflow-wrap:normal}
+.annual-summary{display:block;font-size:15px;line-height:1.8;color:#ECE3CD;margin-top:10px}
+.annual-toggle{width:28px;height:28px;position:relative;color:#D4AD60}
+.annual-toggle:before,.annual-toggle:after{content:'';position:absolute;background:currentColor;width:18px;height:1px;left:5px;top:13px}
+.annual-toggle:after{transform:rotate(90deg);transition:transform .18s}
+.annual-event[open] .annual-toggle:after{transform:rotate(0)}
+.annual-event[open] summary{border-bottom:2px solid #B68B3B}
+.annual-reading{background:#ECE3CD;color:#203A50;padding:45px clamp(24px,5vw,72px);font-family:var(--serif);font-size:17px;line-height:2;letter-spacing:.025em;overflow-wrap:normal;word-break:normal}
+.annual-reading p{margin:0 0 1.2em}
+.annual-reading p:last-child{margin-bottom:0}
+.annual-reading h4{font-size:21px;color:#795724;margin:32px 0 20px;line-height:1.6}
+.annual-reading h4:first-child{margin-top:0}
+.annual-reading strong{color:#795724;font-weight:700}
+.annual-reading hr{border:0;border-top:1px solid #B68B3B;margin:32px 0}
+.annual-reading ul{list-style:disc;padding-left:1.5em;margin:12px 0 24px}
+.annual-reading ul ul{list-style:circle;margin:6px 0 10px}
+.annual-reading li{padding-left:.25em;margin:5px 0}
+.annual-sr{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+/* Five links fit the existing desktop band; mobile keeps its existing grid. */
+@media(min-width:761px){.main-nav{gap:clamp(15px,3vw,46px)}.main-nav a{font-size:13px;letter-spacing:.04em}}
+@media(max-width:760px){.annual-events .chapter-title h2{font-size:25px;letter-spacing:.03em}.annual-cycle{padding-left:0;font-size:13px;margin:24px 0 32px}.annual-timeline{margin-left:7px;padding-left:23px}.annual-node{padding-bottom:20px}.annual-node:before{left:-31px;top:31px;width:10px;height:10px;box-shadow:0 0 0 4px #203A50}.annual-event summary{grid-template-columns:minmax(0,1fr) 24px;gap:15px;padding:22px 18px}.annual-date{grid-column:1;font-size:17px;display:flex;align-items:center;gap:16px}.annual-date small{margin:0;font-size:9px}.annual-heading{grid-column:1}.annual-toggle{grid-column:2;grid-row:1/3;width:24px}.annual-name{font-size:24px}.annual-summary{font-size:14px;margin-top:8px}.annual-reading{padding:27px 18px;font-size:16px;line-height:1.9;letter-spacing:0}.annual-reading h4{font-size:19px}.annual-reading ul{padding-left:1.2em}.annual-reading li{padding-left:0}.annual-reading hr{margin:25px 0}}
+@media(prefers-reduced-motion:reduce){.annual-event summary,.annual-toggle:after{transition:none}}
