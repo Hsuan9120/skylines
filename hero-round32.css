@@ -1,0 +1,120 @@
+/* ROUND 32: isolated cover. All existing page components retain their rules. */
+#hero{position:relative;isolation:isolate;background:#203A50;color:#ECE3CD;display:flex;flex-direction:column;justify-content:center;min-height:calc(100svh - var(--header-height));padding:66px 64px 32px;}
+#hero .hero__composition{width:min(1160px,100%);margin:auto;display:grid;grid-template-columns:1fr 1fr;gap:clamp(16px,2vw,30px);align-items:center;}
+#hero .hero__art{position:relative;width:100%;max-width:540px;aspect-ratio:1;display:grid;place-items:center;justify-self:center;}
+#hero .hero__geometry{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none;}
+#hero .hero__masked{mask:url(#hero-logo-clearance);}
+#hero .hero__arcs{fill:none;stroke:#B68B3B;stroke-width:1.2;}
+#hero .hero__logo{position:relative;display:block;width:42%;height:auto;object-fit:contain;}
+/* Review 3: enlarge both together around their shared center, including the mask. */
+#hero .hero__logo,#hero .hero__geometry{transform:scale(1.08);transform-origin:center;}
+#hero .hero__brand{text-align:center;min-width:0;transform:translateY(42px);}
+#hero h1{font-family:Georgia,'Times New Roman',serif;font-size:clamp(54px,5.6vw,92px);font-weight:400;line-height:1.1;letter-spacing:.035em;white-space:nowrap;margin:0 0 22px;}
+#hero .hero__chinese{display:flex;align-items:center;justify-content:center;gap:22px;font-size:clamp(24px,2.2vw,32px);font-weight:500;letter-spacing:.18em;line-height:1.5;margin:0;}
+#hero .hero__chinese::before,#hero .hero__chinese::after{content:'';width:42px;height:1px;flex:0 1 42px;background:#B68B3B;}
+#hero .hero__era{font-size:10px;letter-spacing:.18em;color:#D4AD60;margin:22px 0 0;}
+#hero .hero__scroll-cue{display:flex;flex-direction:column;align-items:center;align-self:center;gap:12px;margin-top:48px;font-family:Georgia,serif;font-size:11px;letter-spacing:.2em;color:#D4AD60;line-height:1.3;padding:8px 18px;text-decoration:none;}
+#hero .hero__scroll-cue svg{width:16px;height:36px;fill:none;stroke:#B68B3B;stroke-width:1;}
+#hero .hero__scroll-cue:focus-visible{outline:2px solid #ECE3CD;outline-offset:5px;}
+#hero .hero__scroll-cue:hover{color:#ECE3CD;}
+#hero .hero__corner{position:absolute;width:28px;height:28px;border:solid #B68B3B;pointer-events:none;}
+#hero .hero__corner--tl{top:22px;left:22px;border-width:3px 0 0 3px;}
+#hero .hero__corner--tr{top:22px;right:22px;border-width:3px 3px 0 0;}
+#hero .hero__corner--bl{bottom:22px;left:22px;border-width:0 0 3px 3px;}
+#hero .hero__corner--br{bottom:22px;right:22px;border-width:0 3px 3px 0;}
+@media(max-width:1100px) and (min-width:761px){#hero{padding-inline:38px;}#hero h1{font-size:clamp(40px,5.5vw,61px);}#hero .hero__chinese{font-size:24px;gap:12px;}#hero .hero__brand{transform:translateY(38px);}}
+@media(max-width:760px){
+ #hero{padding:48px 20px 30px;min-height:calc(100svh - var(--header-height));}
+ #hero .hero__composition{grid-template-columns:minmax(0,1fr);gap:28px;max-width:430px;}
+ #hero .hero__art{width:100%;max-width:390px;}
+ #hero .hero__masked{mask:url(#hero-logo-clearance);}
+ #hero .hero__arcs{transform:rotate(90deg);transform-origin:250px 250px;}
+ #hero .hero__brand{transform:none;}
+ #hero h1{font-size:clamp(39px,10.5vw,58px);letter-spacing:.045em;margin-bottom:17px;}
+ #hero .hero__chinese{font-size:clamp(21px,5.6vw,26px);gap:15px;letter-spacing:.15em;}
+ #hero .hero__chinese::before,#hero .hero__chinese::after{flex-basis:28px;}
+ #hero .hero__era{font-size:9px;margin-top:18px;}
+ #hero .hero__scroll-cue{margin-top:37px;}
+ #hero .hero__corner{width:21px;height:21px;}
+ #hero .hero__corner--tl{top:15px;left:15px;}
+ #hero .hero__corner--tr{top:15px;right:15px;}
+ #hero .hero__corner--bl{bottom:15px;left:15px;}
+ #hero .hero__corner--br{bottom:15px;right:15px;}
+}
+/* Review 2: fit the complete cover below the measured, unchanged header.
+   Logo and circles scale as one unit, preserving their proportions and clearance. */
+#hero{--cover-space:calc(100svh - var(--header-height));padding-block:28px 20px;}
+#hero .hero__art{max-width:min(540px,calc(var(--cover-space) - 140px));}
+#hero .hero__scroll-cue{margin-top:12px;gap:8px;}
+@media(max-width:760px){
+ #hero{padding-block:25px 20px;}
+ #hero .hero__composition{gap:15px;}
+ #hero .hero__art{max-width:min(390px,calc(var(--cover-space) - 260px));}
+ #hero h1{font-size:clamp(30px,min(10.5vw,6svh),50px);margin-bottom:10px;}
+ #hero .hero__chinese{font-size:clamp(19px,min(5.6vw,3.2svh),25px);}
+ #hero .hero__era{margin-top:10px;}
+ #hero .hero__scroll-cue{margin-top:14px;gap:6px;}
+ #hero .hero__scroll-cue svg{height:26px;}
+}
+@media(max-height:500px){
+ #hero{padding-block:18px 14px;padding-inline:32px;}
+ #hero .hero__composition{grid-template-columns:1fr 1.12fr;gap:20px;}
+ #hero .hero__arcs{transform:none;}
+ #hero .hero__art{max-width:min(260px,calc(var(--cover-space) - 94px));}
+ #hero .hero__brand{transform:none;}
+ #hero h1{font-size:clamp(25px,4vw,40px);margin-bottom:6px;}
+ #hero .hero__chinese{font-size:17px;gap:10px;}
+ #hero .hero__era{font-size:8px;margin-top:6px;}
+ #hero .hero__scroll-cue{margin-top:4px;padding-block:3px;gap:3px;font-size:9px;}
+ #hero .hero__scroll-cue svg{height:17px;}
+}
+/* Review 4: landscape landmarks are 25% and 62.5% of the entire cover.
+   Shared grid tracks preserve alignment without viewport-specific offsets. */
+@media(min-width:761px) and (orientation:landscape){
+ #hero{padding-inline:0;}
+ #hero .hero__composition{width:100%;max-width:none;grid-template-columns:repeat(8,minmax(0,1fr));column-gap:0;}
+ #hero .hero__art{grid-column:1 / 5;grid-row:1;max-width:min(580px,calc(var(--cover-space) - 140px));}
+ #hero .hero__brand{grid-column:4 / 8;grid-row:1;}
+ #hero .hero__logo,#hero .hero__geometry{transform:scale(1.28);}
+ /* Move all three content groups equally; corner marks remain on the page. */
+ #hero{--hero-group-shift:4vw;}
+ #hero .hero__art,#hero .hero__brand,#hero .hero__scroll-cue{position:relative;left:var(--hero-group-shift);}
+ #hero .hero__scroll-cue{margin-top:12px;}
+}
+@media(min-width:761px) and (orientation:landscape) and (max-height:500px){
+ #hero .hero__art{max-width:min(280px,calc(var(--cover-space) - 94px));}
+ #hero .hero__scroll-cue{margin-top:4px;}
+}
+/* Review 5: shift the complete landscape composition by the same amount.
+   Enlarge artwork only; its mask and shared center follow the same scale. */
+@media(min-width:761px) and (orientation:landscape){
+ #hero{--hero-optical-shift:4vw;}
+ #hero .hero__art,#hero .hero__brand,#hero .hero__scroll-cue{translate:var(--hero-optical-shift) 0;}
+ #hero .hero__logo,#hero .hero__geometry{transform:scale(1.28);}
+}
+/* Explicit user exception: footer background matches the existing cream header.
+   Only foreground contrast follows the new surface; layout and content stay intact. */
+.site-footer{background-color:#ECE3CD;background-image:radial-gradient(#7957240d .6px,transparent .6px);background-size:4px 4px;color:#203A50;}
+.site-footer .eyebrow{color:#795724;}
+/* Review 7: a single centered stage preserves the entire composition on resize. */
+#hero{height:calc(100svh - var(--header-height));min-height:0;padding:0;display:grid;place-items:center;overflow:clip;}
+#hero .hero__stage{position:absolute;width:1180px;height:730px;left:50%;top:50%;transform:translate(-50%,-50%) scale(var(--stage-scale,.5));transform-origin:center;display:flex;flex-direction:column;align-items:center;}
+#hero .hero__composition{width:1180px;max-width:none;height:650px;display:grid;grid-template-columns:650px 530px;gap:0;margin:0;position:static;translate:none;transform:none;flex-shrink:0;}
+#hero .hero__art{grid-column:1;grid-row:1;width:650px;max-width:none;height:650px;aspect-ratio:1;position:relative;left:auto;top:auto;translate:none;transform:none;}
+#hero .hero__geometry,#hero .hero__logo{transform:none;}
+#hero .hero__arcs{transform:none;}
+#hero .hero__brand{grid-column:2;grid-row:1;position:static;left:auto;translate:none;transform:none;text-align:center;}
+#hero h1{font-size:80px;letter-spacing:.035em;line-height:1.1;margin:0 0 22px;}
+#hero .hero__chinese{font-size:30px;gap:22px;line-height:1.5;letter-spacing:.18em;}
+#hero .hero__era{font-size:10px;margin-top:22px;}
+#hero .hero__scroll-cue{position:static;left:auto;translate:none;transform:none;margin:10px 0 0;padding:8px 18px;gap:8px;font-size:11px;line-height:1.3;flex-shrink:0;}
+#hero .hero__scroll-cue svg{width:16px;height:36px;}
+#hero.hero--portrait .hero__stage{width:350px;height:585px;}
+#hero.hero--portrait .hero__composition{width:350px;height:auto;grid-template-columns:350px;gap:15px;}
+#hero.hero--portrait .hero__art{width:350px;height:350px;}
+#hero.hero--portrait .hero__arcs{transform:rotate(90deg);transform-origin:250px 250px;}
+#hero.hero--portrait .hero__brand{grid-column:1;grid-row:2;}
+#hero.hero--portrait h1{font-size:42px;margin-bottom:10px;}
+#hero.hero--portrait .hero__chinese{font-size:23px;gap:15px;}
+#hero.hero--portrait .hero__era{font-size:9px;margin-top:10px;}
+#hero.hero--portrait .hero__scroll-cue{margin-top:auto;}
